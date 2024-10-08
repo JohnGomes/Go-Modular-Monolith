@@ -12,24 +12,24 @@ const EnvPrefix = "MONO_"
 
 // Shared contains configurable values shared by microservices.
 type Shared struct {
-	AddrHost               appcfg.NotEmptyString `env:"ADDR_HOST"`
-	AddrHostInt            appcfg.NotEmptyString `env:"ADDR_HOST_INT"`
-	AuthAddrHost           appcfg.NotEmptyString `env:"AUTH_ADDR_HOST"`
-	AuthAddrHostInt        appcfg.NotEmptyString `env:"AUTH_ADDR_HOST_INT"`
-	AuthAddrPort           appcfg.Port           `env:"AUTH_ADDR_PORT"`
-	AuthAddrPortInt        appcfg.Port           `env:"AUTH_ADDR_PORT_INT"`
-	AuthGRPCGWAddrPort     appcfg.Port           `env:"AUTH_GRPCGW_ADDR_PORT"`
-	AuthMetricsAddrPort    appcfg.Port           `env:"AUTH_METRICS_ADDR_PORT"`
-	ExampleAddrPort        appcfg.Port           `env:"EXAMPLE_ADDR_PORT"`
-	ExampleMetricsAddrPort appcfg.Port           `env:"EXAMPLE_METRICS_ADDR_PORT"`
-	TLSCACert              appcfg.NotEmptyString `env:"TLS_CA_CERT"`
-	XMySQLAddrHost         appcfg.NotEmptyString `env:"X_MYSQL_ADDR_HOST"`
-	XMySQLAddrPort         appcfg.Port           `env:"X_MYSQL_ADDR_PORT"`
-	XNATSAddrUrls          appcfg.NotEmptyString `env:"X_NATS_ADDR_URLS"`
-	XPostgresAddrHost      appcfg.NotEmptyString `env:"X_POSTGRES_ADDR_HOST"`
-	XPostgresAddrPort      appcfg.Port           `env:"X_POSTGRES_ADDR_PORT"`
-	XPostgresDBName        appcfg.NotEmptyString `env:"X_POSTGRES_DB_NAME"`
-	XSTANClusterID         appcfg.NotEmptyString `env:"X_STAN_CLUSTER_ID"`
+	AddrHost               appcfg.NotEmptyString `env:"MONO_ADDR_HOST"`
+	AddrHostInt            appcfg.NotEmptyString `env:"MONO_ADDR_HOST_INT"`
+	AuthAddrHost           appcfg.NotEmptyString `env:"MONO_AUTH_ADDR_HOST"`
+	AuthAddrHostInt        appcfg.NotEmptyString `env:"MONO_AUTH_ADDR_HOST_INT"`
+	AuthAddrPort           appcfg.Port           `env:"MONO_AUTH_ADDR_PORT"`
+	AuthAddrPortInt        appcfg.Port           `env:"MONO_AUTH_ADDR_PORT_INT"`
+	AuthGRPCGWAddrPort     appcfg.Port           `env:"MONO_AUTH_GRPCGW_ADDR_PORT"`
+	AuthMetricsAddrPort    appcfg.Port           `env:"MONO_AUTH_METRICS_ADDR_PORT"`
+	ExampleAddrPort        appcfg.Port           `env:"MONO_EXAMPLE_ADDR_PORT"`
+	ExampleMetricsAddrPort appcfg.Port           `env:"MONO_EXAMPLE_METRICS_ADDR_PORT"`
+	TLSCACert              appcfg.NotEmptyString `env:"MONO_TLS_CA_CERT"`
+	XMySQLAddrHost         appcfg.NotEmptyString `env:"MONO_X_MYSQL_ADDR_HOST"`
+	XMySQLAddrPort         appcfg.Port           `env:"MONO_X_MYSQL_ADDR_PORT"`
+	XNATSAddrUrls          appcfg.NotEmptyString `env:"MONO_X_NATS_ADDR_URLS"`
+	XPostgresAddrHost      appcfg.NotEmptyString `env:"MONO_X_POSTGRES_ADDR_HOST"`
+	XPostgresAddrPort      appcfg.Port           `env:"MONO_X_POSTGRES_ADDR_PORT"`
+	XPostgresDBName        appcfg.NotEmptyString `env:"MONO_X_POSTGRES_DB_NAME"`
+	XSTANClusterID         appcfg.NotEmptyString `env:"MONO_X_STAN_CLUSTER_ID"`
 }
 
 // Default ports.

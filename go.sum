@@ -444,6 +444,7 @@ github.com/kulti/thelper v0.6.3/go.mod h1:DsqKShOvP40epevkFrvIwkCMNYxMeTNjdWL4dq
 github.com/kunwardeep/paralleltest v1.0.2/go.mod h1:ZPqNm1fVHPllh5LPVujzbVz1JN2GhLxSfY+oqUsvG30=
 github.com/kunwardeep/paralleltest v1.0.6 h1:FCKYMF1OF2+RveWlABsdnmsvJrei5aoyZoaGS+Ugg8g=
 github.com/kunwardeep/paralleltest v1.0.6/go.mod h1:Y0Y0XISdZM5IKm3TREQMZ6iteqn1YuwCsJO/0kL9Zes=
+github.com/kylelemons/godebug v1.1.0 h1:RPNrshWIDI6G2gRW9EHilWtl7Z6Sb1BR0xunSBf0SNc=
 github.com/kylelemons/godebug v1.1.0/go.mod h1:9/0rRGxNHcop5bhtWyNeEfOS8JIWk580+fNqagV/RAw=
 github.com/kyoh86/exportloopref v0.1.8 h1:5Ry/at+eFdkX9Vsdw3qU4YkvGtzuVfzT4X7S77LoN/M=
 github.com/kyoh86/exportloopref v0.1.8/go.mod h1:1tUcJeiioIs7VWe5gcOObrux3lb66+sBqGZrRkMwPgg=

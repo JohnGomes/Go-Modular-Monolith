@@ -19,7 +19,7 @@ var (
 	TestTimeout           = 7 * TestSecond
 )
 
-func Verstion() string {
+func Version() string {
 	if bi, ok := debug.ReadBuildInfo(); ok {
 		if bi.Main.Version == "(devel)" && ver != "" {
 			return ver
