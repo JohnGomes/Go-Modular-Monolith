@@ -1,3 +1,4 @@
+// Package example provides embedded microservice.
 package example
 
 import (
@@ -5,6 +6,10 @@ import (
 
 	"github.com/JohnGomes/Go-Modular-Monolith/ms/example/internal/app"
 	"github.com/JohnGomes/Go-Modular-Monolith/ms/example/internal/config"
+	"github.com/JohnGomes/Go-Modular-Monolith/ms/example/internal/dal"
+	"github.com/JohnGomes/Go-Modular-Monolith/ms/example/internal/migrations"
+	"github.com/JohnGomes/Go-Modular-Monolith/pkg/cobrax"
+	"github.com/JohnGomes/Go-Modular-Monolith/pkg/def"
 	"github.com/powerman/structlog"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/spf13/cobra"
@@ -23,7 +28,18 @@ func (s *Service) Name() string { return app.ServiceName }
 
 // Init implements main.embeddedService interface.
 func (s *Service) Init(sharedCfg *config.SharedCfg, cmd, serveCmd *cobra.Command) error {
-	return nil
+	dal.InitMetrics(reg)
+	app.InitMetrics(reg)
+	// jsonrpc2.InitMetrics(reg)
+
+	ctx := def.NewContext(app.ServiceName)
+	gooseMySQLCmd := cobrax.NewGooseFakeDbCmd(ctx, migrations.Goose(), config.GetGooseMySQL)
+	cmd.AddCommand(gooseMySQLCmd)
+
+	return config.Init(sharedCfg, config.FlagSets{
+		Serve:      serveCmd.Flags(),
+		GooseMySQL: gooseMySQLCmd.Flags(),
+	})
 }
 
 // RunServe implements main.embeddedService interface.

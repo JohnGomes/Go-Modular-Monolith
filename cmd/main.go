@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/JohnGomes/Go-Modular-Monolith/internal/config"
+	"github.com/JohnGomes/Go-Modular-Monolith/ms/example"
 	"github.com/JohnGomes/Go-Modular-Monolith/ms/mono"
 	"github.com/JohnGomes/Go-Modular-Monolith/pkg/cobrax"
 	"github.com/JohnGomes/Go-Modular-Monolith/pkg/concurrent"
@@ -30,7 +31,7 @@ type emeddedService interface {
 }
 
 var (
-	embeddedServices = []emeddedService{&mono.Service{}} //, &auth.Service{}, &example.Service{}}
+	embeddedServices = []emeddedService{&mono.Service{}, &example.Service{}} //, &auth.Service{}, &example.Service{}}
 	log              = structlog.New(structlog.KeyUnit, "main")
 	logLevel         = appcfg.MustOneOfString("debug", []string{"debug", "info", "warn", "err"})
 	rootCmd          = &cobra.Command{

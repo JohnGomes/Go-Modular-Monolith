@@ -4,10 +4,12 @@ package mono
 import (
 	"context"
 	"net/http"
+	"regexp"
 	"strconv"
 
 	"github.com/JohnGomes/Go-Modular-Monolith/internal/config"
 	"github.com/JohnGomes/Go-Modular-Monolith/pkg/concurrent"
+	"github.com/JohnGomes/Go-Modular-Monolith/pkg/def"
 	"github.com/JohnGomes/Go-Modular-Monolith/pkg/netx"
 	"github.com/JohnGomes/Go-Modular-Monolith/pkg/serve"
 	"github.com/powerman/appcfg"
@@ -23,8 +25,7 @@ type Ctx = context.Context
 var (
 	fs     *pflag.FlagSet
 	shared *config.Shared
-
-	own = &struct {
+	own    = &struct {
 		Port appcfg.Port `env:"MONO_ADDR_PORT"`
 	}{
 		Port: appcfg.MustPort(strconv.Itoa(config.MonoPort)),
@@ -43,8 +44,8 @@ func (s *Service) Name() string { return "mono" }
 
 // Init implements main.embeddedService interface.
 func (s *Service) Init(sharedCfg *config.Shared, _, serveCmd *cobra.Command) error {
-	// namespace := regexp.MustCompile(`[^a-zA-Z0-9]+`).ReplaceAllString(def.ProgName, "_")
-	// initMetrics(reg, namespace)
+	namespace := regexp.MustCompile(`[^a-zA-Z0-9]+`).ReplaceAllString(def.ProgName, "_")
+	initMetrics(reg, namespace)
 
 	fs, shared = serveCmd.Flags(), sharedCfg
 	fromEnv := appcfg.NewFromEnv(config.EnvPrefix)
@@ -58,10 +59,7 @@ func (s *Service) Init(sharedCfg *config.Shared, _, serveCmd *cobra.Command) err
 // RunServe implements main.embeddedService interface.
 func (s *Service) RunServe(_, ctxShutdown Ctx, shutdown func()) (err error) {
 	log := structlog.FromContext(ctxShutdown, nil)
-	log.Err("failed to serve")
 	if s.cfg.BindAddr.Host() == "" {
-		log.Info("WAAAAAAIIIITTTTT", own.Port.Value(&err))
-		log.Info("WAAAAAAIIIITTTTT", shared.AddrHostInt.Value(&err))
 		s.cfg.BindAddr = netx.NewAddr(shared.AddrHostInt.Value(&err), own.Port.Value(&err))
 		if err != nil {
 			return log.Err("failed to get config", "err", appcfg.WrapPErr(err, fs, shared, own))
